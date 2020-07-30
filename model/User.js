@@ -14,20 +14,20 @@ const userSchema = mongoose.Schema({
     type: String,
     min: 5,
   },
-  lastname: {
-    type: String,
-    maxlength: 15,
-  },
-  role: {
-    type: Number,
-    default: 0,
-  },
-  token: {
-    type: String,
-  },
-  tokenExpiration: {
-    type: Number,
-  },
+  //   lastname: {
+  //     type: String,
+  //     maxlength: 15,
+  //   },
+  //   role: {
+  //     type: Number,
+  //     default: 0,
+  //   },
+  //   token: {
+  //     type: String,
+  //   },
+  //   tokenExpiration: {
+  //     type: Number,
+  //   },
 });
 
 const User = mongoose.model("UserModal", userSchema);

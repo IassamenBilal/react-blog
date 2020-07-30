@@ -1,17 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
+const userRoute = require("./routes/user");
+const config = require("./config/key");
 
 mongoose.connect(
-  "mongodb+srv://Bilal:bilal@cluster0.q50xs.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  config.mongoURI,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
     console.log("DB connected");
   }
 );
 
-app.get("/", (req, res) => {
-  res.send("hello");
-});
+app.use(express.json());
+
+app.use("/api/users", userRoute);
 
 app.listen(5000, console.log("server started at 5000"));
