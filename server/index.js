@@ -3,17 +3,24 @@ const mongoose = require("mongoose");
 const app = express();
 const userRoute = require("./routes/user");
 const config = require("./config/key");
-
+const cookieParser = require("cookie-parser");
 mongoose.connect(
   config.mongoURI,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  },
   () => {
     console.log("DB connected");
   }
 );
 
 app.use(express.json());
-
+app.use(cookieParser());
 app.use("/api/users", userRoute);
 
-app.listen(5000, console.log("server started at 5000"));
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, console.log("server started at " + PORT));
